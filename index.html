@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快乐！</title>
+    <style>
+        body {
+            background: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+            color: white;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 60px;
+            color: #ff69b4;
+            animation: birthdayAnimation 2s infinite;
+        }
+
+        @keyframes birthdayAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            background-color: #ff69b4;
+            border-radius: 50% 50% 40% 40%;
+            animation: balloonAnimation 2s infinite;
+        }
+
+        @keyframes balloonAnimation {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(0, -20px);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        #audio {
+            display: none;
+        }
+
+        .fireworks {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ffcc00;
+            animation: fireworksAnimation 1s infinite;
+        }
+
+        @keyframes fireworksAnimation {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(100px, -100px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .clickEffect {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff69b4;
+            border-radius: 50%;
+            animation: clickEffectAnimation 1s ease-out;
+        }
+
+        @keyframes clickEffectAnimation {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        .streamers {
+            position: absolute;
+            width: 100px;
+            height: 300px;
+            background-image: linear-gradient(to right, #ffcc00, #ff69b4, #4b0082);
+            animation: streamersAnimation 2s infinite;
+        }
+
+        @keyframes streamersAnimation {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-300px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .rainbow-text {
+            font-size: 40px;
+            background: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: rainbowTextAnimation 2s infinite;
+        }
+
+        @keyframes rainbowTextAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .shake-text {
+            font-size: 40px;
+            color: white;
+            animation: shakeTextAnimation 0.5s infinite;
+        }
+
+        @keyframes shakeTextAnimation {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25%, 75% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="shake-text">生日快乐！</h1>
+    <p>祝你的生日充满快乐和喜悦</p>
+    <p>愿你的每一天都充满阳光和微笑</p>
+
+    <div id="balloons">
+        <div class="balloon" style="left: 20%; top: 50%;"></div>
+        <div class="balloon" style="left: 40%; top: 40%;"></div>
+        <div class="balloon" style="left: 60%; top: 60%;"></div>
+        <div class="balloon" style="left: 80%; top: 30%;"></div>
+    </div>
+
+    <audio id="audio" src="birthday_song.mp3" autoplay loop></audio>
+
+    <div id="fireworksContainer"></div>
+
+    <div class="streamers" style="left: 10%;"></div>
+    <div class="streamers" style="left: 30%;"></div>
+    <div class="streamers" style="left: 50%;"></div>
+    <div class="streamers" style="left: 70%;"></div>
+    <div class="streamers" style="left: 90%;"></div>
+
+    <p class="rainbow-text">更多快乐等着你！</p>
+
+    <script>
+        var audio = document.getElementById("audio");
+        audio.volume = 0.2;
+
+        document.onmousemove = function(e){
+            var fireworks = document.createElement("div");
+            fireworks.className = "fireworks";
+            fireworks.style.left = e.pageX + "px";
+            fireworks.style.top = e.pageY + "px";
+            document.getElementById("fireworksContainer").appendChild(fireworks);
+            setTimeout(function(){
+                fireworks.remove();
+            }, 1000);
+        };
+
+        document.onclick = function(e){
+            var clickEffect = document.createElement("div");
+            clickEffect.className = "clickEffect";
+            clickEffect.style.left = e.pageX + "px";
+            clickEffect.style.top = e.pageY + "px";
+            document.body.appendChild(clickEffect);
+            setTimeout(function(){
+                clickEffect.remove();
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
